@@ -11,4 +11,4 @@ spec:
       priority: 10
       services:
         - name: firefly-iii
-          port: 8080
+          port: 80
