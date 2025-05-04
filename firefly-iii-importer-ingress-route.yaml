@@ -1,0 +1,14 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: firefly-iii-importer
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`firefly-importer.local`)
+      priority: 10
+      services:
+        - name: firefly-iii-importer
+          port: 8080

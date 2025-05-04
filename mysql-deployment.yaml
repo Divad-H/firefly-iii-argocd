@@ -5,6 +5,7 @@ metadata:
   labels:
     app: firefly-iii
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: firefly-iii
@@ -20,9 +21,12 @@ spec:
       containers:
       - image: yobasystems/alpine-mariadb:latest
         name: mysql
-        envFrom:
-        - secretRef:
-          name: secrets
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: db_password
         ports:
         - containerPort: 3306
           name: mysql
