@@ -1,0 +1,8 @@
+resources:
+  - mysql-service.yaml
+  - mysql-pvc.yaml
+  - mysql-deployment.yaml
+  - firefly-iii.yaml
+  - ingress-firefly-iii-cron.yaml
+  - firefly-iii-importer.yaml
+  - sealed-secrets.yaml
