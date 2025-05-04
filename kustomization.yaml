@@ -1,8 +1,14 @@
 resources:
+  - sealed-secrets.yaml
+  - sealed-email-sender-secret.yaml
   - mysql-service.yaml
   - mysql-pvc.yaml
   - mysql-deployment.yaml
-  - firefly-iii.yaml
-  - ingress-firefly-iii-cron.yaml
-  - firefly-iii-importer.yaml
-  - sealed-secrets.yaml
+  - firefly-iii-service.yaml
+  - firefly-iii-pvc.yaml
+  - firefly-iii-deployment.yaml
+  - firefly-iii-ingress-route.yaml
+  - firefly-iii-importer-service.yaml
+  - firefly-iii-importer-deployment.yaml
+  - firefly-iii-importer-ingress-route.yaml
+  - firefly-iii-cron.yaml
