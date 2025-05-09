@@ -13,4 +13,5 @@ resources:
   - firefly-iii-importer-deployment.yaml
   - firefly-iii-importer-ingress-route.yaml
   - firefly-iii-cron.yaml
+  - firefly-iii-auto-import-cron.yaml
   - temp-ingress.yaml

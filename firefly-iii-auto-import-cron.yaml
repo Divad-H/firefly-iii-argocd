@@ -1,0 +1,37 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: "firefly-iii-auto-import-cron"
+spec:
+  schedule: "0 */7 * * *"
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 2
+  successfulJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 3600
+      backoffLimit: 5
+      template:
+        metadata:
+          labels:
+            app: firefly-iii
+            tier: cron
+        spec:
+          containers:
+            - name: cron
+              image: yauritux/busybox-curl
+              imagePullPolicy: IfNotPresent
+              command:
+                - curl
+              args:
+                - --location 
+                - --request 
+                - POST 
+                - "http://firefly-iii-importer.firefly-iii.svc.cluster.local:8080/autoimport?directory=/import&secret=$(AUTO_IMPORT_SECRET)"
+              env:
+                - name: AUTO_IMPORT_SECRET
+                  valueFrom:
+                    secretKeyRef:
+                      name: secrets
+                      key: auto_import_secret
+          restartPolicy: Never
