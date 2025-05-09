@@ -36,6 +36,11 @@ spec:
             secretKeyRef:
               name: secrets
               key: nordigen_key
+        - name: AUTO_IMPORT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: auto_import_secret
         - name: IMPORT_DIR_ALLOWLIST
           value: /import
         - name: CAN_POST_AUTOIMPORT
