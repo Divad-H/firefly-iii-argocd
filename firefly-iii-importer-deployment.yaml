@@ -21,11 +21,27 @@ spec:
       - image: fireflyiii/data-importer:version-1
         name: firefly-iii-importer
         env:
-#        - name: FIREFLY_III_ACCESS_TOKEN
-#          valueFrom:
-#            secretKeyRef:
-#              name: secrets
-#              key: access_token
+        - name: FIREFLY_III_ACCESS_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: access_token
+        - name: NORDIGEN_ID
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: nordigen_id
+        - name: NORDIGEN_KEY
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: nordigen_key
+        - name: IMPORT_DIR_ALLOWLIST
+          value: /import
+        - name: CAN_POST_AUTOIMPORT
+          value: "true"
+        - name: CAN_POST_FILES
+          value: "true"
         - name: FIREFLY_III_URL
           value: "http://firefly-iii.firefly-iii.svc.cluster.local"
         - name: TRUSTED_PROXIES
@@ -33,4 +49,12 @@ spec:
         ports:
         - containerPort: 8080
           name: firefly-iii
+        volumeMounts:
+          - name: import-config-secrets-volume
+            readOnly: true
+            mountPath: "/import"
         imagePullPolicy: Always
+      volumes:
+        - name: import-config-secrets-volume
+          secret:
+            secretName: import-config-secrets

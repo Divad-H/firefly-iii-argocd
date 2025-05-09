@@ -9,6 +9,7 @@ resources:
   - firefly-iii-deployment.yaml
   - firefly-iii-ingress-route.yaml
   - firefly-iii-importer-service.yaml
+  - import-config-sealed-secrets.yaml
   - firefly-iii-importer-deployment.yaml
   - firefly-iii-importer-ingress-route.yaml
   - firefly-iii-cron.yaml
