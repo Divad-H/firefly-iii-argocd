@@ -21,6 +21,8 @@ spec:
       containers:
       - image: yobasystems/alpine-mariadb:latest
         name: mysql
+        args:
+          - "--skip-log-tc"
         env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
